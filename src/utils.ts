@@ -95,6 +95,7 @@ export async function getWorkflowRunStatus() {
     repo: runInfo.repo,
     run_id: parseInt(runInfo.runId || "1"),
   });
+  info("Workflow jobs: " + JSON.stringify(workflowJobs, undefined, 2));
 
   let lastStep = ({} as any)
   let jobStartDate
@@ -137,10 +138,14 @@ export async function getWorkflowRunStatus() {
   const startTime = moment(jobStartDate, moment.ISO_8601);
   const endTime = moment(lastStep?.completed_at, moment.ISO_8601); 
 
-  return {
+  const result = {
     elapsedSeconds: endTime.diff(startTime, "seconds"),
     conclusion: lastStep?.conclusion,
   };
+
+  info("Result: " + JSON.stringify(result, undefined, 2));
+
+  return result;
 }
 
 export function renderActions(statusUrl: string, diffUrl: string) {
