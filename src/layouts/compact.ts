@@ -4,7 +4,7 @@ import { getInput } from "@actions/core";
 import { CONCLUSION_THEMES } from "../constants";
 
 export function formatCompactLayout(
-  commit: Octokit.Response<Octokit.ReposGetCommitResponse>,
+  commit: any,
   conclusion: string,
   elapsedSeconds?: number
 ) {

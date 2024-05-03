@@ -1,3 +1,4 @@
+
 import { Octokit } from "@octokit/rest";
 import { setOutput, info, getInput, warning } from "@actions/core";
 import fetch, { Response } from "node-fetch";
@@ -95,7 +96,7 @@ export async function getWorkflowRunStatus() {
     run_id: parseInt(runInfo.runId || "1"),
   });
 
-  let lastStep = {} as Octokit.ActionsListJobsForWorkflowRunResponseJobsItemStepsItem
+  let lastStep = ({} as any)
   let jobStartDate
 
   /**
@@ -113,7 +114,7 @@ export async function getWorkflowRunStatus() {
    */
   let abort = false
   for(let job of workflowJobs.data.jobs) {
-    for(let step of job.steps) {
+    for(let step of job.steps!) {
       // check if current step still running
       if (step.completed_at !== null) {
         lastStep = step

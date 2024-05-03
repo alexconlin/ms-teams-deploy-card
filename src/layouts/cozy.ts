@@ -11,7 +11,7 @@ export const OCTOCAT_LOGO_URL =
   "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png";
 
 export function formatCozyLayout(
-  commit: Octokit.Response<Octokit.ReposGetCommitResponse>,
+  commit: any,
   conclusion: string,
   elapsedSeconds?: number
 ) {
